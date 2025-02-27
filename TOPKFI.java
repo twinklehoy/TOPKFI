@@ -55,12 +55,6 @@ public class TOPKFI{
                 }
             }
         }
-        /*if (transactions_a.size()>2 && transactions_b.size()>2) {
-            System.out.println("tra: " + transactions_a);
-            System.out.println("trb: " + transactions_b);
-            System.out.println("tr nw: " + new_transactions);
-            System.exit(0);
-        }*/
         s = new_transactions.size();
         return new QueueElem(s, item, elem, new_transactions);
     }
@@ -89,17 +83,8 @@ public class TOPKFI{
             System.out.println("M: "+M);
         }
 
-
-        //int K = 15;
-        //int M = 20;
-        final long startTime = System.nanoTime();
-        //String db_path = "C:\\Users\\Maria\\IdeaProjects\\TOPKFI\\src\\retail.dat";
-
         HashSet<Integer> itemset = new HashSet(500, 1);
         HashMap<Integer, QueueElem> item_map = new HashMap<>(500,1);
-
-
-
         // read the input file
         try {
             File file_db = new File(db_path);
@@ -127,7 +112,6 @@ public class TOPKFI{
                         return;
                     }
                 }
-
                 /* do something with the array "items" ... */
                 for (int i=0; i<items.length; i++){
                     QueueElem elem;
@@ -148,7 +132,6 @@ public class TOPKFI{
             e.printStackTrace();
             return;
         }
-
         /* Initialize priority queue with single items... */
         PriorityQueue<QueueElem> Q = new PriorityQueue<>(itemset.size(), new QueueComparator());
         PriorityQueue<QueueElem> Q_tmp = null;
@@ -159,22 +142,13 @@ public class TOPKFI{
             elem = item_map.get(item);
             Q.add(elem);
         }
-
-
-
         // initialize S
         LinkedList<QueueElem> S = new LinkedList<>();
-
-
         elem = null;
         for (int k=0; k< K; k++){
-            //System.out.println("K="+k);
-            //System.out.println("Q_size="+Q.size());
-            //System.out.println("itemset_size="+itemset.size());
             if (Q.isEmpty()){
                 break;
             }
-
             elem = Q.poll();
             S.add(elem);
             int a = elem.item;
@@ -203,7 +177,6 @@ public class TOPKFI{
                     if (prova.p>=simga_j) Q_tmp.add(prova);
                     else{
                         prova.delete();
-                        if((prova.parent == null)) item_map.remove(prova.item);
                         prova = null;
 
                     }
@@ -214,7 +187,6 @@ public class TOPKFI{
 
             item_iterator = itemset.iterator();
             HashSet<Integer> new_itemset = new HashSet<>(500,1);
-            //System.out.println(simga_j);
             while(item_iterator.hasNext()){
                 int b = item_iterator.next();
                 if (item_map.containsKey(b) && b>a && item_map.get(b).p>=simga_j){
@@ -262,16 +234,8 @@ public class TOPKFI{
                 System.out.println(elem_iterator.next());
             }
         }
-
-        final long duration = System.nanoTime() - startTime;
-
-        //Date myTime = new Date(duration / 1000);
-        //System.out.println(myTime.getTime());
-        System.out.println(duration/1e9);
     }
 }
-
-
 class QueueElem {
     public int p = 0;
     Integer item = null;
