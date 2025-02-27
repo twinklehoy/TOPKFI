@@ -1,14 +1,5 @@
-// This file is a template for the project of Dati e Algoritmi AA 2022-23
 
-// You are free to modify this code, but do not use any library outside of
-// java.io and java.util. Check carefully the input and output format,
-// use the one described in the project specifications otherwise we may not
-// be able to test and evaluate your submission!
-
-// The following code reads the input dataset line by line, parsing the items in each transaction.
-// Before the submission, disable any debug output (for example, setting the variable
-// DEBUG to false) and only output the results as described in the project specifications.
-
+/*This file is a project assignment for the course Dati e Algoritmi AA 2022-23*/
 
 import java.io.*;
 import java.util.*;
